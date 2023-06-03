@@ -6,7 +6,7 @@
 using namespace std;
 
 bool TryAgain(char);
-void menu();
+void menu(),staticS();
 int Choice();
 
 int main()
@@ -15,7 +15,7 @@ int main()
 	do {
 		menu();
 
-		cout <<setw(72)<< "Do you want to repeat again? [Y/N]: ";
+		cout <<endl<<setw(72)<< "Do you want to repeat again? [Y/N]: ";
 		cin.get(tryAgain);
 		cin.ignore();
 		tryAgain = toupper(tryAgain);
@@ -34,6 +34,7 @@ void menu()
 		cout << "=";
 	}
 	cout << setw(90) << "Welcome to a Compilation of Data Structures" << setw(43) << "\n";
+	cout << setw(86) << "You are allowed to only allowed to input integers(whole numbers)" << setw(43) << "\n";
 	cout << setw(5);
 	for (int i = 0; i <= 100; i++)
 	{
@@ -103,10 +104,16 @@ void menu()
 
 			cout << setw(62) << "1. Static Stack" << endl << setw(63) << "2. Dynamic Stack" << setw(55) << endl << "Choice: ";
 			cin >> choice2;
-
+			cout << setw(5);
+			for (int i = 0; i <= 100; i++)
+			{
+				cout << "=";
+			}
+			cout << endl << endl;
 			if (choice2 == 1)
 			{
 				//staticArray here
+				staticS();
 				inValid = false;
 
 			}
@@ -136,7 +143,7 @@ void menu()
 int Choice()
 {
 	int choice;
-	cout << setw(76) << "Pick the data structure that you want to use:" << endl << setw(55) << "1. Array" << endl << setw(61) << "2. Linked List" << endl << setw(55) << "3. Stack" << endl << setw(55) << "4. Queue" << endl << setw(55) << "Choice: ";
+	cout << setw(76) << "Pick the data structure that you want to use:" << endl << setw(55) << "1. Array" << endl << setw(61) << "2. Linked List" << endl << setw(55) << "3. Stack" << endl << setw(55) << "4. Queue" << endl<<setw(54)<<"5. Exit" <<endl<< setw(55) << "Choice: ";
 	cin >> choice;
 	cin.ignore();
 	cout << endl;
@@ -144,8 +151,74 @@ int Choice()
 	return choice;
 }
 
-
 bool TryAgain(char tryAgain)
 {
 	return tryAgain == 'Y';
+}
+
+void staticS()
+{
+	staticStacks sStack;
+
+	int choice;
+	int inp;
+	char cont;
+	//options of staticstack
+	cout << setw(67) << "You Picked Static Stack!" <<endl;
+	
+	do {
+		cout << setw(5);
+		for (int i = 0; i <= 100; i++)
+		{
+			cout << "=";
+		}
+		cout << endl;
+		cout << setw(54) << "1. Push" << setw(53)<< endl << "2. Pop" << setw(54) << endl <<"3. Peek" << setw(57) << endl<< "4. Display" << endl <<  setw(64)<< "4. Return to Main"<<endl << setw(55) << "Choice: ";
+		cin >> choice;
+		cin.ignore();
+		cout << setw(5);
+		for (int i = 0; i <= 100; i++)
+		{
+			cout << "=";
+		}
+	
+		switch (choice)
+		{
+		case 1:
+
+			cout << endl << endl << setw(64) << "You Picked Push!\n";
+			cout << setw(5);
+			
+			cout << endl << endl;
+			cout << setw(63) << "Enter a number: ";
+			cin >> inp;
+			sStack.push(inp);
+			cin.ignore();
+			break;
+		case 2:
+			cout << endl << endl << setw(64) << "You Picked Push!\n";
+			cout << setw(5);
+
+			cout << endl << endl;
+			sStack.pop();
+			
+			
+			break;
+		case 3:
+			cout << endl << endl << setw(64) << "You Picked Peek!\n";
+			cout << setw(5);
+
+			cout << endl << endl;
+			cout<<setw(58) <<"Peeked: " << sStack.peek() << endl;
+			
+			break;
+		}
+
+		cout << setw(78) << "Do you want to use other functions? [Y/N]: ";
+		cin>> cont;
+		cont = toupper(cont);
+		cin.ignore();
+	} while (cont == 'Y');
+	system("cls");
+	return menu();
 }

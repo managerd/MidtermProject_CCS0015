@@ -43,11 +43,13 @@ int staticStacks::peek() {
 
 void staticStacks::displayStat() {
     if (isEmpty()) {
-        cout << "Stack is empty." << endl;
+        cout << setw(62) << "Stack is empty." << endl;
         return;
     }
-    cout << "Stack elements: ";
-    for (int i = top; i >= 0; i--)
-        cout << arr[i] << " ";
+    cout << setw(62) << "Stack elements: "<<endl;
+    cout << setw(45);
+    for (int i = top; i >= 0; i--) {
+        cout  << arr[i] << " ";
+    }
     cout << endl;
 }

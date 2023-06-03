@@ -6,7 +6,7 @@
 using namespace std;
 
 bool TryAgain(char);
-void menu(),staticS();
+void menu(),staticS(),dynamicS();
 int Choice();
 
 int main()
@@ -22,7 +22,6 @@ int main()
 
 	} while (TryAgain(tryAgain));
 }
-
 
 void menu()
 {
@@ -120,6 +119,7 @@ void menu()
 			else if (choice2 == 2)
 			{
 				//dynamicArray Here
+				dynamicS();
 				inValid = false;
 			}
 			else
@@ -173,7 +173,7 @@ void staticS()
 			cout << "=";
 		}
 		cout << endl;
-		cout << setw(54) << "1. Push" << setw(53)<< endl << "2. Pop" << setw(54) << endl <<"3. Peek" << setw(57) << endl<< "4. Display" << endl <<  setw(64)<< "4. Return to Main"<<endl << setw(55) << "Choice: ";
+		cout << setw(54) << "1. Push" << setw(53)<< endl << "2. Pop" << setw(54) << endl <<"3. Peek" << setw(57) << endl<< "4. Display" << endl <<  setw(64)<< "5. Return to Main"<<endl << setw(55) << "Choice: ";
 		cin >> choice;
 		cin.ignore();
 		cout << setw(5);
@@ -212,10 +212,104 @@ void staticS()
 			cout<<setw(58) <<"Peeked: " << sStack.peek() << endl;
 			
 			break;
+		case 4:
+			cout << endl << endl << setw(64) << "You Picked Display!\n";
+			cout << setw(5);
+
+			cout << endl << endl;
+			sStack.displayStat();
+			break;
+		case 5:
+			return menu();
+			break;
+		default:
+			cout << endl << endl << setw(64) << "INVALID INPUT!\n";
+			cout << setw(5);
+			break;
 		}
 
 		cout << setw(78) << "Do you want to use other functions? [Y/N]: ";
 		cin>> cont;
+		cont = toupper(cont);
+		cin.ignore();
+	} while (cont == 'Y');
+	system("cls");
+	return menu();
+}
+
+void dynamicS() 
+{
+	dynamicStacks dStack;
+	int choice, inp;
+
+	char cont;
+
+	cout << setw(67) << "You Picked Dynamic Stack!" << endl;
+
+	do {
+		cout << setw(5);
+		for (int i = 0; i <= 100; i++)
+		{
+			cout << "=";
+		}
+		cout << endl;
+		cout << setw(54) << "1. Push" << setw(53) << endl << "2. Pop" << setw(54) << endl << "3. Peek" << setw(57) << endl << "4. Display" << endl << setw(64) << "5. Return to Main" << endl << setw(55) << "Choice: ";
+		cin >> choice;
+		cin.ignore();
+		cout << setw(5);
+		for (int i = 0; i <= 100; i++)
+		{
+			cout << "=";
+		}
+
+		switch (choice)
+		{
+		case 1:
+
+			cout << endl << endl << setw(64) << "You Picked Push!\n";
+			cout << setw(5);
+
+			cout << endl << endl;
+			cout << setw(63) << "Enter a number: ";
+			cin >> inp;
+			dStack.push(inp);
+			cin.ignore();
+			break;
+		case 2:
+			cout << endl << endl << setw(64) << "You Picked Push!\n";
+			cout << setw(5);
+
+			cout << endl << endl;
+			dStack.pop();
+
+
+			break;
+		case 3:
+			cout << endl << endl << setw(64) << "You Picked Peek!\n";
+			cout << setw(5);
+
+			cout << endl << endl;
+			cout << setw(58) << "Peeked: " << dStack.peek() << endl;
+
+			break;
+		case 4:
+			cout << endl << endl << setw(64) << "You Picked Display!\n";
+			cout << setw(5);
+
+			cout << endl << endl;
+			dStack.displayDyn();
+			break;
+		case 5:
+			return menu();
+			break;
+		default:
+			cout << endl << endl << setw(64) << "INVALID INPUT!\n";
+			cout << setw(5);
+			break;
+		}
+
+		cout << setw(78) << "Do you want to use other functions? [Y/N]: ";
+		cin >> cont;
 		cont = toupper(cont);
 		cin.ignore();
 	} while (cont == 'Y');

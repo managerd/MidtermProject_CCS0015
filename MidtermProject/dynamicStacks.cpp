@@ -1,5 +1,6 @@
 #include "dynamicstacks.h"
 #include <iostream>
+#include <iomanip>
 
 using namespace std;
 
@@ -16,24 +17,24 @@ void dynamicStacks::push(int value) {
     newNode->data = value;
     newNode->next = top;
     top = newNode;
-    cout << "Pushed " << value << " onto the stack." << endl;
+    cout << setw(51) << "Pushed " << value << " onto the stack." << endl;
 }
 
 void dynamicStacks::pop() {
     if (isEmpty()) {
-        cout << "Stack Underflow: Cannot pop value, stack is empty." << endl;
+        cout << setw(81) << "Stack Underflow: Cannot pop value, stack is empty." << endl;
         return;
     }
     Node* temp = top;
     top = top->next;
     int value = temp->data;
     delete temp;
-    cout << "Popped " << value << " from the stack." << endl;
+    cout << setw(51) << "Popped " << value << " from the stack." << endl;
 }
 
 int dynamicStacks::peek() {
     if (isEmpty()) {
-        cout << "Stack is empty." << endl;
+        cout << setw(62) << "Stack is empty." << endl;
         return -1;
     }
     return top->data;
@@ -41,10 +42,11 @@ int dynamicStacks::peek() {
 
 void dynamicStacks::displayDyn() {
     if (isEmpty()) {
-        cout << "Stack is empty." << endl;
+        cout << setw(62) << "Stack is empty." << endl;
         return;
     }
-    cout << "Stack elements: ";
+    cout << setw(62) << "Stack elements: " << endl;
+    cout << setw(45);
     Node* current = top;
     while (current != nullptr) {
         cout << current->data << " ";

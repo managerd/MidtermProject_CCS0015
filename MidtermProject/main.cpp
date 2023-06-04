@@ -8,11 +8,13 @@
 #include "dynamicStacks.h"//CLAMOR
 #include "staticQueue.h"//DELA ROSA
 #include "dynamicQueue.h"// DELA ROSA
+//#include "staticArray.h" //BAY
+#include "LinkedList.h" //REBENITO
 
 using namespace std;
 
 bool TryAgain(char);
-void menu(),staticS(),dynamicS(),staticQ(),dynamicQ();
+void menu(),linkedList(), staticS(), dynamicS(), staticQ(), dynamicQ();
 int Choice();
 
 //DRIVER FILE - MALABANAN
@@ -64,21 +66,24 @@ void menu()
 			cout << setw(62) << "1. Static Array" << endl << setw(63) << "2. Dynamic Array" << setw(55) << endl << "Choice: ";
 			cin >> choice;
 
-			if (choice == 1)
+			switch(choice )
 			{
+			case 1:
 				//staticArray here
+				//staticA();
 				inValid = false;
-				
-			}
-			else if (choice ==2 )
-			{
-				//dynamicArray Here
+				break;
+			case 2: 
+				//dynamicArray here
+				//dynamicA();
 				inValid = false;
-			}
-			else 
-			{
+				break;
+			default:
+
 				cout << "INVALID INPUT!!!!";
 				system("cls");
+				return menu();
+				break;
 			}
 
 		} while (inValid == true);
@@ -93,6 +98,7 @@ void menu()
 		}
 		cout << endl << endl << setw(64) << "You Picked Linked List!\n";
 		//linked list here
+		linkedList();
 		cin.ignore();
 		break;
 	case 3:
@@ -179,6 +185,15 @@ void menu()
 		}
 
 		break;
+	
+	case 5:
+		exit(1);
+		break;
+	default:
+		cout << "INVALID INPUT!!";
+		system("cls");
+		return menu();
+		break;
 	}
 
  	
@@ -206,6 +221,313 @@ int Choice()
 bool TryAgain(char tryAgain)
 {
 	return tryAgain == 'Y';
+}
+
+
+//void staticA()
+//{
+//	staticArray arrS;
+//	int choice, inp;
+//
+//	char cont;
+//
+//	arrS.useStaticArray();
+//	do {
+//
+//		cout << setw(5);
+//		for (int i = 0; i <= 100; i++)
+//		{
+//			cout << "=";
+//		}
+//		cout << endl;
+//		cout << setw(56) << "1. Insert" << setw(57) << endl << "2. Display"  <<endl<< setw(64) << "3. Return to Main" << endl << setw(55) << "Choice: ";
+//		cin >> choice;
+//		if (cin.fail()) {
+//			cin.clear();
+//			cin.ignore(numeric_limits<streamsize>::max(), '\n');
+//			cout << "Invalid input. Please enter a number." << endl;
+//			system("cls");
+//
+//			return staticA();
+//		}
+//		cin.ignore();
+//		cout << setw(5);
+//		for (int i = 0; i <= 100; i++)
+//		{
+//			cout << "=";
+//		}
+//
+//		switch(choice)
+//		{
+//		case 1:
+//			
+//			cout << endl << endl << setw(64) << "You Picked Insert!\n";
+//			cout << setw(5);
+//
+//			cout << endl << endl;
+//			cout << setw(63) << "Enter a number: ";
+//			cin >> inp;
+//			cin >> inp;
+//			if (cin.fail()) {
+//				cin.clear();
+//				cin.ignore(numeric_limits<streamsize>::max(), '\n');
+//				system("cls");
+//				return staticA();
+//			}
+//			arrS.insert(inp);
+//			cin.ignore();
+//			break;
+//		case 2:
+//			arrS.display();
+//			break;
+//		}
+//
+//		cout << setw(78) << "Do you want to use other functions? [Y/N]: ";
+//		cin >> cont;
+//		cont = toupper(cont);
+//		cin.ignore();
+//	} while (cont == 'Y');
+//	system("cls");
+//	return menu();
+//
+//}
+
+void linkedList()
+{
+	LinkedList listMain;
+	int listMenu, listPosition, listValue;
+	char caseChoice;
+	bool begVal = false;
+	cout << setw(5);
+	for (int i = 0; i <= 100; i++)
+	{
+		cout << "=";
+	}
+	cout << endl;
+	
+	
+
+	do {
+		cout << setw(65) << "Linked List Functions: \n"
+			<< setw(63) << "1. Insert (Position)\n"
+			<< setw(64) << "2. Insert (Beginning)\n"
+			<< setw(58) << "3. Insert (End)\n" //insertEnd
+			<< setw(63) << "4. Remove (Position)\n"
+			<< setw(52) << "5. Search\n"
+			<< setw(55) << "6. List Size\n"
+			<< setw(68) << "7. Check if list is Empty\n"
+			<< setw(58) << "8. Display List\n"
+			<< setw(60) << "9. Return to Main\n"
+			<< setw(68) << "Enter your choice of function: ";
+
+		cin >> listMenu;
+
+		switch (listMenu) {
+
+			//insert a value at a specific position
+		case 1:
+			cout << setw(5);
+			for (int i = 0; i <= 100; i++)
+			{
+				cout << "=";
+			}
+			cout << endl;
+			cout <<setw(63)<< "Enter a value: ";
+			cin >> listValue;
+			cout << setw(63) << "Enter a position: ";
+			cin >> listPosition;
+
+			if (begVal != true) {
+				cout <<endl<< setw(85) << "Cannot insert at first position, must have a value first!" << endl;
+				cout << endl;
+				break;
+			}
+
+			else {
+				listMain.insertPos(listValue, listPosition);
+				cout << setw(33) << listValue << " has been inserted at position " << listPosition << endl;
+				cout << endl;
+			}
+
+			break;
+
+			//insert a value at a beginning of the list	
+		case 2:
+			cout << setw(5);
+			for (int i = 0; i <= 100; i++)
+			{
+				cout << "=";
+			}
+			cout << endl;
+			cout << setw(63) << "Enter a value: ";
+			cin >> listValue;
+
+			listMain.insertBeg(listValue);
+			begVal = true;
+
+			cout << setw(33) << listValue << " has been inserted at the beginning of the list." << endl;
+			cout << endl;
+			break;
+
+			//insert a value at the end of the list
+		case 3:
+			cout << setw(5);
+			for (int i = 0; i <= 100; i++)
+			{
+				cout << "=";
+			}
+			cout << endl;
+			cout << setw(63) << "Enter a value: ";
+			cin >> listValue;
+
+			listMain.insertEnd(listValue);
+
+			cout << setw(33) << listValue << " has been inserted at the end of the list." << endl;
+			cout << endl;
+			break;
+
+			//remove a value at a specific position
+		case 4:
+			cout << setw(5);
+			for (int i = 0; i <= 100; i++)
+			{
+				cout << "=";
+			}
+			cout << endl;
+			if (listMain.isEmpty()) {
+				cout << endl;
+				cout << setw(63) << "List is empty, nothing to remove" << endl;
+				cout << endl;
+				break;
+			}
+
+			else {
+				cout << endl;
+				cout << setw(63) << "Enter a position: ";
+				cin >> listPosition;
+
+				do {
+					cout << setw(73) << "Delete the value inserted at position " << listPosition << "? [Y/N] ";
+					cin >> caseChoice;
+
+					if (caseChoice == 'Y' || caseChoice == 'y') {
+						listMain.deleteVal(listPosition);
+						cout << setw(53) << "Value of position " << listPosition << " has been deleted from the list." << endl;
+						cout << endl;
+						break;
+					}
+
+					else if (caseChoice == 'N' || caseChoice == 'n') {
+						cout << setw(63) << "Deletion of position " << listPosition << " has been cancelled." << endl;
+						cout << endl;
+						break;
+					}
+
+					else {
+						cout << setw(63) << "Invalid Input! Please Try Again" << endl;
+						cout << endl;
+					}
+				} while ((caseChoice != 'Y' || caseChoice != 'y') || (caseChoice != 'N' || caseChoice != 'n'));
+			}
+			break;
+
+			//Search for a value in the list
+		case 5:
+			cout << setw(5);
+			for (int i = 0; i <= 100; i++)
+			{
+				cout << "=";
+			}
+			cout << endl;
+			if (listMain.isEmpty()) {
+				cout << endl;
+				cout << "List is empty, nothing to search" << endl;
+				cout << endl;
+				break;
+			}
+
+			else {
+				cout << endl;
+				cout<<setw(63) << "Enter a value: ";
+				cin >> listValue;
+
+				if (listMain.findVal(listValue)) {
+					cout<<setw(53) << "The value " << listValue << " exists in the list." << endl;
+					cout << endl;
+				}
+
+				else {
+					cout <<setw(43)<< "The value " << listValue << " does not exist in the list." << endl;
+					cout << endl;
+				}
+
+				break;
+			}
+
+			//Get the size of the list
+		case 6:
+			cout << setw(5);
+			for (int i = 0; i <= 100; i++)
+			{
+				cout << "=";
+			}
+			cout << endl;
+			cout <<setw(63)<< "The size of the list is " << listMain.getSize() << endl;
+			cout << endl;
+			break;
+
+			//check if the list is empty or not
+		case 7:
+			cout << setw(5);
+			for (int i = 0; i <= 100; i++)
+			{
+				cout << "=";
+			}
+			cout << endl;
+			if (listMain.isEmpty()) {
+				cout << endl;
+				cout << setw(63)<<"The list is empty" << endl;
+				cout << endl;
+			}
+
+			else {
+				cout << endl;
+				cout << setw(73)<< "The list is not empty and has the value of the ff: { ";
+				listMain.listDisplay();
+				cout << " }" << endl;
+				cout << endl;
+			}
+
+			break;
+
+			//displays the list
+		case 8:
+			cout << setw(5);
+			for (int i = 0; i <= 100; i++)
+			{
+				cout << "=";
+			}
+			cout << endl;
+			cout << setw(63) << "Current values of the list: { ";
+			listMain.listDisplay();
+			cout << " }" << endl;
+			cout << endl;
+			break;
+		case 9:
+			return menu();
+			break;
+		default:
+			cout << setw(5);
+			for (int i = 0; i <= 100; i++)
+			{
+				cout << "=";
+			}
+			cout << endl;
+			cout << setw(68) << "Invalid Input! Please Try Again" << endl;
+			cout << endl;
+			break;
+		}
+	} while (listMenu != 0);
 }
 
 void staticS()

@@ -4,16 +4,21 @@
 
 using namespace std;
 
+
+
 staticStacks::staticStacks() {
-    top = -1;
+	top = -1;
+    
 }
+
+
 
 bool staticStacks::isEmpty() {
     return top == -1;
 }
 
 bool staticStacks::isFull() {
-    return top == MAX_SIZE - 1;
+    return top == MAX_SIZE;
 }
 
 void staticStacks::push(int value) {

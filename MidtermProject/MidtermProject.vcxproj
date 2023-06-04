@@ -129,10 +129,12 @@
   <ItemGroup>
     <ClCompile Include="dynamicStacks.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="staticQueue.cpp" />
     <ClCompile Include="staticStacks.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="dynamicStacks.h" />
+    <ClInclude Include="staticQueue.h" />
     <ClInclude Include="staticStacks.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

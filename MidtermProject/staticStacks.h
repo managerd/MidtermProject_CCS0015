@@ -1,8 +1,8 @@
 #ifndef STATICSTACKS_H
 #define STATICSTACKS_H
 
-const int MAX_SIZE = 100;
 
+const int MAX_SIZE = 100;
 class staticStacks {
 private:
     int top;

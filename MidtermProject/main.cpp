@@ -3,10 +3,11 @@
 #include <iomanip>
 #include "staticStacks.h"
 #include "dynamicStacks.h"
+#include "staticQueue.h"
 using namespace std;
 
 bool TryAgain(char);
-void menu(),staticS(),dynamicS();
+void menu(),staticS(),dynamicS(),staticQ();
 int Choice();
 
 int main()
@@ -43,7 +44,7 @@ void menu()
 	bool inValid = true;
 	switch (Choice())
 	{
-	case 1:
+	case 1://linkedlist
 		cout << setw(5);
 		for (int i = 0; i <= 100; i++)
 		{
@@ -78,7 +79,7 @@ void menu()
 
 		cin.ignore();
 		break;
-	case 2:
+	case 2://linkedlist
 		cout << setw(5);
 		for (int i = 0; i <= 100; i++)
 		{
@@ -109,31 +110,68 @@ void menu()
 				cout << "=";
 			}
 			cout << endl << endl;
-			if (choice2 == 1)
+			switch (choice2)
 			{
+			case 1:
 				//staticArray here
 				staticS();
 				inValid = false;
+				break;
 
-			}
-			else if (choice2 == 2)
-			{
+			case 2:
+
 				//dynamicArray Here
 				dynamicS();
 				inValid = false;
-			}
-			else
-			{
+				break;
+			default:
+
 				cout << "INVALID INPUT!!!!";
 				system("cls");
+				return menu();
+				break;
 			}
 
 		} while (inValid == true);
 
 		cin.ignore();
 		break;
+	case 4:
+		cout << setw(5);
+		for (int i = 0; i <= 100; i++)
+		{
+			cout << "=";
+		}
+		cout << endl;
+		cout << endl << endl << setw(64) << "You Picked Queue!\n";
+		cout << setw(62) << "1. Static Queue" << endl << setw(63) << "2. Dynamic Queue" << setw(55) << endl << "Choice: ";
+		cin >> choice;
+		
+		cin.ignore();
+		cout << setw(5);
+		for (int i = 0; i <= 100; i++)
+		{
+			cout << "=";
+		}
 
 
+		switch(choice)
+		{
+		case 1:
+			//staticQueue here
+			staticQ();
+			break;
+		case 2:
+			//dynamicQueue here
+			break;
+		default:
+			cout << "INVALID INPUT!!!!";
+			system("cls");
+			return menu();
+			break;
+		}
+
+		break;
 	}
 
  	
@@ -145,6 +183,13 @@ int Choice()
 	int choice;
 	cout << setw(76) << "Pick the data structure that you want to use:" << endl << setw(55) << "1. Array" << endl << setw(61) << "2. Linked List" << endl << setw(55) << "3. Stack" << endl << setw(55) << "4. Queue" << endl<<setw(54)<<"5. Exit" <<endl<< setw(55) << "Choice: ";
 	cin >> choice;
+	if (cin.fail()) {
+		cin.clear();
+		cin.ignore(numeric_limits<streamsize>::max(), '\n');
+		system("cls");
+		menu();
+		
+	}
 	cin.ignore();
 	cout << endl;
 
@@ -175,6 +220,14 @@ void staticS()
 		cout << endl;
 		cout << setw(54) << "1. Push" << setw(53)<< endl << "2. Pop" << setw(54) << endl <<"3. Peek" << setw(57) << endl<< "4. Display" << endl <<  setw(64)<< "5. Return to Main"<<endl << setw(55) << "Choice: ";
 		cin >> choice;
+		if (cin.fail()) {
+			cin.clear();
+			cin.ignore(numeric_limits<streamsize>::max(), '\n');
+			cout << "Invalid input. Please enter a number." << endl;
+			system("cls");
+			
+			return staticS();
+		}
 		cin.ignore();
 		cout << setw(5);
 		for (int i = 0; i <= 100; i++)
@@ -192,6 +245,12 @@ void staticS()
 			cout << endl << endl;
 			cout << setw(63) << "Enter a number: ";
 			cin >> inp;
+			if (cin.fail()) {
+				cin.clear();
+				cin.ignore(numeric_limits<streamsize>::max(), '\n');
+				system("cls");
+				return staticS();
+			}
 			sStack.push(inp);
 			cin.ignore();
 			break;
@@ -225,6 +284,7 @@ void staticS()
 		default:
 			cout << endl << endl << setw(64) << "INVALID INPUT!\n";
 			cout << setw(5);
+			return menu();
 			break;
 		}
 
@@ -255,6 +315,14 @@ void dynamicS()
 		cout << endl;
 		cout << setw(54) << "1. Push" << setw(53) << endl << "2. Pop" << setw(54) << endl << "3. Peek" << setw(57) << endl << "4. Display" << endl << setw(64) << "5. Return to Main" << endl << setw(55) << "Choice: ";
 		cin >> choice;
+		if (cin.fail()) {
+			cin.clear();
+			cin.ignore(numeric_limits<streamsize>::max(), '\n');
+			cout << "Invalid input. Please enter a number." << endl;
+			system("cls");
+			
+			return dynamicS();
+		}
 		cin.ignore();
 		cout << setw(5);
 		for (int i = 0; i <= 100; i++)
@@ -272,6 +340,13 @@ void dynamicS()
 			cout << endl << endl;
 			cout << setw(63) << "Enter a number: ";
 			cin >> inp;
+			cin >> inp;
+			if (cin.fail()) {
+				cin.clear();
+				cin.ignore(numeric_limits<streamsize>::max(), '\n');
+				system("cls");
+				return dynamicS();
+			}
 			dStack.push(inp);
 			cin.ignore();
 			break;
@@ -315,4 +390,97 @@ void dynamicS()
 	} while (cont == 'Y');
 	system("cls");
 	return menu();
+}
+
+void staticQ() 
+{
+	staticQueue sQueue;
+
+	int choice, inp;
+
+	char cont;
+
+	cout<<endl << setw(67) << "You Picked Static Queue!" << endl;
+
+	
+
+	do {
+		cout << setw(5);
+		for (int i = 0; i <= 100; i++)
+		{
+			cout << "=";
+		}
+		cout << endl;
+		cout << setw(57) << "1. Enqueue" << setw(57) << endl << "2. Dequeue" << setw(57) << endl << "3. Display"<< endl << setw(64) << "4. Return to Main" << endl << setw(55) << "Choice: ";
+		cin >> choice;
+		if (cin.fail()) {
+			cin.clear();
+			cin.ignore(numeric_limits<streamsize>::max(), '\n');
+			cout << "Invalid input. Please enter a number." << endl;
+			system("cls");
+
+			return dynamicS();
+		}
+		cin.ignore();
+		cout << setw(5);
+		for (int i = 0; i <= 100; i++)
+		{
+			cout << "=";
+		}
+
+		switch (choice)
+		{
+		case 1:
+
+			cout << endl << endl << setw(64) << "You Picked Enqueue!\n";
+			cout << setw(5);
+
+			cout << endl << endl;
+			cout << setw(63) << "Enter a number: ";
+			cin >> inp;
+			
+			if (cin.fail()) {
+				cin.clear();
+				cin.ignore(numeric_limits<streamsize>::max(), '\n');
+				system("cls");
+				return dynamicS();
+			}
+			cin.ignore();
+			sQueue.enqueue(inp);
+			
+			break;
+		case 2:
+			cout << endl << endl << setw(64) << "You Picked Dequeue!\n";
+			cout << setw(5);
+
+			cout << endl << endl;
+			sQueue.dequeue();
+
+
+			break;
+		
+		case 3:
+			cout << endl << endl << setw(64) << "You Picked Display!\n";
+			cout << setw(5);
+
+			cout << endl << endl;
+			sQueue.display();
+			break;
+		case 4:
+			return menu();
+			break;
+		default:
+			cout << endl << endl << setw(64) << "INVALID INPUT!\n";
+			cout << setw(5);
+			break;
+		}
+
+		cout << setw(78) << "Do you want to use other functions? [Y/N]: ";
+		cin >> cont;
+		cont = toupper(cont);
+		cin.ignore();
+	} while (cont == 'Y');
+	system("cls");
+	return menu();
+
 }

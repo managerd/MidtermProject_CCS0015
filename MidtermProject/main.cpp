@@ -501,8 +501,6 @@ void dynamicQ()
 
 	cout << endl << setw(67) << "You Picked Dynamic Queue!" << endl;
 
-
-
 	do {
 		cout << setw(5);
 		for (int i = 0; i <= 100; i++)
@@ -580,6 +578,5 @@ void dynamicQ()
 	} while (cont == 'Y');
 	system("cls");
 	return menu();
-
 
 }

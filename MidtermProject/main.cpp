@@ -8,13 +8,13 @@
 #include "dynamicStacks.h"//CLAMOR
 #include "staticQueue.h"//DELA ROSA
 #include "dynamicQueue.h"// DELA ROSA
-//#include "staticArray.h" //BAY
+#include "Array.h" //BAY
 #include "LinkedList.h" //REBENITO
 
 using namespace std;
 
 bool TryAgain(char);
-void menu(),linkedList(), staticS(), dynamicS(), staticQ(), dynamicQ();
+void menu(),Array1(),linkedList(), staticS(), dynamicS(), staticQ(), dynamicQ();
 int Choice();
 
 //DRIVER FILE - MALABANAN
@@ -50,9 +50,10 @@ void menu()
 	}
 	cout << "\n\n\n";
 	bool inValid = true;
+	char cont;
 	switch (Choice())
 	{
-	case 1://linkedlist
+	case 1://array
 		cout << setw(5);
 		for (int i = 0; i <= 100; i++)
 		{
@@ -63,30 +64,13 @@ void menu()
 		do {
 			cout << endl <<endl << setw(64) << "You Picked Array!\n";
 			
-			cout << setw(62) << "1. Static Array" << endl << setw(63) << "2. Dynamic Array" << setw(55) << endl << "Choice: ";
-			cin >> choice;
+			Array1();
 
-			switch(choice )
-			{
-			case 1:
-				//staticArray here
-				//staticA();
-				inValid = false;
-				break;
-			case 2: 
-				//dynamicArray here
-				//dynamicA();
-				inValid = false;
-				break;
-			default:
-
-				cout << "INVALID INPUT!!!!";
-				system("cls");
-				return menu();
-				break;
-			}
-
-		} while (inValid == true);
+			cout << setw(78) << "Do you want to use other functions? [Y/N]: ";
+			cin >> cont;
+			cont = toupper(cont);
+			cin.ignore();
+		} while (cont == 'Y');
 
 		cin.ignore();
 		break;
@@ -223,7 +207,58 @@ bool TryAgain(char tryAgain)
 	return tryAgain == 'Y';
 }
 
+void Array1()
+{
+	Array arrayMain;
+	int choice,inp;
+	char cont;
+	
+	do {
+		cout << setw(5);
+		for (int i = 0; i <= 100; i++)
+		{
+			cout << "=";
+		}
+		cout << endl;
+		cout << setw(53) << "1. Add" << setw(56) << endl << "2. Remove" << setw(57) << endl << "3. Display" << setw(57) <<endl << setw(64) << "4. Return to Main" << endl << setw(55) << "Choice: ";
+		cin >> choice;
 
+		switch(choice)
+		{
+		case 1: 
+			cout << endl << endl << setw(64) << "You Picked Add!\n";
+			cout << setw(5);
+
+			cout << endl << endl;
+			cout << setw(63) << "Enter a number: ";
+			cin >> inp;
+			if (cin.fail()) {
+				cin.clear();
+				cin.ignore(numeric_limits<streamsize>::max(), '\n');
+				system("cls");
+				return Array1();
+			}
+			arrayMain.addElement(inp);
+			break;
+		case 2:
+			arrayMain.removeElement();
+			break;
+		case 3:
+			arrayMain.displayElements();
+			break;
+		case 4:
+			system("cls");
+			return menu();
+			break;
+		}
+		cout << setw(78) << "Do you want to use other functions? [Y/N]: ";
+		cin >> cont;
+		cont = toupper(cont);
+		cin.ignore();
+	} while (cont == 'Y');
+	system("cls");
+	return menu();
+}
 
 void linkedList()
 {
@@ -480,7 +515,7 @@ void staticS()
 			cout << "=";
 		}
 		cout << endl;
-		cout << setw(54) << "1. Push" << setw(53)<< endl << "2. Pop" << setw(54) << endl <<"3. Peek" << setw(57) << endl<< "4. Display" << endl <<  setw(64)<< "5. Return to Main"<<endl << setw(55) << "Choice: ";
+		cout << setw(54) << "1. Push" << setw(53) << endl << "2. Pop" << setw(54) << endl << "3. Peek" << setw(57) << endl << "4. Display" << endl << setw(64) << "5. Return to Main" << endl << setw(55) << "Choice: ";;
 		cin >> choice;
 		if (cin.fail()) {
 			cin.clear();

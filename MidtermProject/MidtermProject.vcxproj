@@ -127,6 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Array.cpp" />
     <ClCompile Include="dynamicQueue.cpp" />
     <ClCompile Include="dynamicStacks.cpp" />
     <ClCompile Include="LinkedList.cpp" />
@@ -135,6 +136,7 @@
     <ClCompile Include="staticStacks.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Array.h" />
     <ClInclude Include="dynamicQueue.h" />
     <ClInclude Include="dynamicStacks.h" />
     <ClInclude Include="LinkedList.h" />

@@ -23,7 +23,7 @@ bool staticQueue::isFull() const {
 
 void staticQueue::enqueue(int value) {
     if (isFull()) {
-        cout << "QUEUE IS FULL" << endl;
+        cout << setw(54) << "QUEUE IS FULL" << endl;
         return;
     }
     if (isEmpty()) {
@@ -42,7 +42,7 @@ void staticQueue::enqueue(int value) {
 
 void staticQueue::dequeue() {
     if (isEmpty()) {
-        cout << "QUEUE IS EMPTY" << endl;
+        cout << setw(54) << "QUEUE IS EMPTY" << endl;
         return;
     }
 

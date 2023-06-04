@@ -1,16 +1,21 @@
 #include <iostream>
 #include <cstring>
 #include <iomanip>
-#include "staticStacks.h"
-#include "dynamicStacks.h"
-#include "staticQueue.h"
 #include <limits>
+
+//HEADER FILES	
+#include "staticStacks.h"//CLAMOR
+#include "dynamicStacks.h"//CLAMOR
+#include "staticQueue.h"//DELA ROSA
+#include "dynamicQueue.h"// DELA ROSA
+
 using namespace std;
 
 bool TryAgain(char);
-void menu(),staticS(),dynamicS(),staticQ();
+void menu(),staticS(),dynamicS(),staticQ(),dynamicQ();
 int Choice();
 
+//DRIVER FILE - MALABANAN
 int main()
 {
 	char tryAgain;
@@ -164,6 +169,7 @@ void menu()
 			break;
 		case 2:
 			//dynamicQueue here
+			dynamicQ();
 			break;
 		default:
 			cout << "INVALID INPUT!!!!";
@@ -420,7 +426,7 @@ void staticQ()
 			cout << "Invalid input. Please enter a number." << endl;
 			system("cls");
 
-			return dynamicS();
+			return staticQ();
 		}
 		cin.ignore();
 		cout << setw(5);
@@ -444,7 +450,7 @@ void staticQ()
 				cin.clear();
 				cin.ignore(numeric_limits<streamsize>::max(), '\n');
 				system("cls");
-				return dynamicS();
+				return staticQ();
 			}
 			cin.ignore();
 			sQueue.enqueue(inp);
@@ -483,5 +489,97 @@ void staticQ()
 	} while (cont == 'Y');
 	system("cls");
 	return menu();
+
+}
+
+void dynamicQ() 
+{
+	dynamicQueue dQueue;
+	int choice, inp;
+
+	char cont;
+
+	cout << endl << setw(67) << "You Picked Dynamic Queue!" << endl;
+
+
+
+	do {
+		cout << setw(5);
+		for (int i = 0; i <= 100; i++)
+		{
+			cout << "=";
+		}
+		cout << endl;
+		cout << setw(57) << "1. Enqueue" << setw(57) << endl << "2. Dequeue" << setw(57) << endl << "3. Display" << endl << setw(64) << "4. Return to Main" << endl << setw(55) << "Choice: ";
+		cin >> choice;
+		if (cin.fail()) {
+			cin.clear();
+			cin.ignore(numeric_limits<streamsize>::max(), '\n');
+			cout << "Invalid input. Please enter a number." << endl;
+			system("cls");
+
+			return dynamicQ();
+		}
+		cin.ignore();
+		cout << setw(5);
+		for (int i = 0; i <= 100; i++)
+		{
+			cout << "=";
+		}
+
+		switch (choice)
+		{
+		case 1:
+
+			cout << endl << endl << setw(64) << "You Picked Enqueue!\n";
+			cout << setw(5);
+
+			cout << endl << endl;
+			cout << setw(63) << "Enter a number: ";
+			cin >> inp;
+
+			if (cin.fail()) {
+				cin.clear();
+				cin.ignore(numeric_limits<streamsize>::max(), '\n');
+				system("cls");
+				return dynamicQ();
+			}
+			cin.ignore();
+			dQueue.enqueue(inp);
+
+			break;
+		case 2:
+			cout << endl << endl << setw(64) << "You Picked Dequeue!\n";
+			cout << setw(5);
+
+			cout << endl << endl;
+			dQueue.dequeue();
+
+			break;
+
+		case 3:
+			cout << endl << endl << setw(64) << "You Picked Display!\n";
+			cout << setw(5);
+
+			cout << endl << endl;
+			dQueue.display();
+			break;
+		case 4:
+			return menu();
+			break;
+		default:
+			cout << endl << endl << setw(64) << "INVALID INPUT!\n";
+			cout << setw(5);
+			break;
+		}
+
+		cout << setw(78) << "Do you want to use other functions? [Y/N]: ";
+		cin >> cont;
+		cont = toupper(cont);
+		cin.ignore();
+	} while (cont == 'Y');
+	system("cls");
+	return menu();
+
 
 }

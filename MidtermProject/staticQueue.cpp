@@ -6,8 +6,8 @@ using namespace std;
 
 staticQueue::staticQueue()
 {
-    front = -1;
-    rear = -1;
+    front = 0;
+    rear = 0;
     count = 0;
     
 
@@ -27,9 +27,13 @@ void staticQueue::enqueue(int value) {
         return;
     }
     if (isEmpty()) {
-        front = rear;
+        front = rear =0;
     }
-    rear = (rear + 1) % LIMIT;
+	else
+    { 
+        rear = (rear + 1) % LIMIT; 
+    }
+    
     data[rear] = value;
     cout << setw(54) << "Queued " << value << "." << endl;
     
@@ -54,15 +58,14 @@ void staticQueue::dequeue() {
 }
 
 void staticQueue::display() {
-    if (isEmpty()) {
-        cout << "QUEUE IS EMPTY." << endl;
-        return;
-    }
+   
 
     cout <<setw(62)<< "QUEUE: " << endl;
     cout << setw(45);
-    for (int i = front; i <=rear; i = (i + 1) % LIMIT) {
+    for (int i = front; i !=rear; i = (i + 1) % LIMIT) {
         cout << data[i] << " ";
+
     }
+    cout << data[rear] << " ";
     cout << endl;
 }

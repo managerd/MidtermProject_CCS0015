@@ -4,6 +4,7 @@
 #include "staticStacks.h"
 #include "dynamicStacks.h"
 #include "staticQueue.h"
+#include <limits>
 using namespace std;
 
 bool TryAgain(char);
